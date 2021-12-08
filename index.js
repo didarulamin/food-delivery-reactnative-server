@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000;
 const dbUrl = process.env.DB_URL;
 const client = new MongoClient(dbUrl);
 
-app.get("/orders", async (req, res) => {
+app.post("/orders", async (req, res) => {
   try {
     await client.connect();
     const database = client.db("food-delivery");
