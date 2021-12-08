@@ -21,7 +21,7 @@ app.post("/orders", async (req, res) => {
     const database = client.db("food-delivery");
     const orders = database.collection("orders");
     console.log(res);
-    const data = req.body.data;
+    const data = req.body.initialOrder;
     console.log(data);
     const doc = {
       ...data,
