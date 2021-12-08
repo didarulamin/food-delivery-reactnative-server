@@ -20,6 +20,7 @@ app.post("/orders", async (req, res) => {
     await client.connect();
     const database = client.db("food-delivery");
     const orders = database.collection("orders");
+    console.log(res);
     const data = req.body.data;
     console.log(data);
     const doc = {
