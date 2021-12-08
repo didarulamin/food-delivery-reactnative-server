@@ -33,6 +33,10 @@ app.get("/orders", async (req, res) => {
   }
 });
 
+app.get("/", async (req, res) => {
+  res.send("hello");
+});
+
 //server listening on
 app.listen(port, () => {
   console.log("listening on port", port);
