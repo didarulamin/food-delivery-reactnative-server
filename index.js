@@ -34,6 +34,34 @@ app.post("/orders", async (req, res) => {
   }
 });
 
+app.get("/allOrders", async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db("food-delivery");
+    const orders = database.collection("orders");
+
+    const result = await orders.find().toArray();
+    res.json(result);
+    console.log("connected");
+  } finally {
+    await client.close();
+  }
+});
+
+app.get("/allFoods", async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db("food-delivery");
+    const foods = database.collection("foods");
+
+    const result = await foods.find().toArray();
+    res.json(result);
+    console.log("connected");
+  } finally {
+    await client.close();
+  }
+});
+
 app.get("/", async (req, res) => {
   res.send("hello");
 });
