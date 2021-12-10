@@ -61,6 +61,19 @@ app.get("/allFoods", async (req, res) => {
     await client.close();
   }
 });
+app.get("/allRestaurant", async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db("food-delivery");
+    const foods = database.collection("restaurant");
+
+    const result = await foods.find().toArray();
+    res.json(result);
+    console.log("connected");
+  } finally {
+    await client.close();
+  }
+});
 
 app.get("/", async (req, res) => {
   res.send("hello");
