@@ -33,6 +33,24 @@ app.post("/orders", async (req, res) => {
     await client.close();
   }
 });
+app.post("/saveUser", async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db("food-delivery");
+    const orders = database.collection("user");
+
+    const data = req.body;
+
+    const doc = {
+      ...data,
+    };
+    const result = await orders.insertOne(doc);
+    res.json(result);
+    console.log("connected");
+  } finally {
+    await client.close();
+  }
+});
 
 app.get("/allOrders", async (req, res) => {
   try {
