@@ -20,8 +20,7 @@ app.post("/orders", async (req, res) => {
     await client.connect();
     const database = client.db("food-delivery");
     const orders = database.collection("orders");
-
-    const data = req.body;
+    const data = req.body.json();
     console.log(data, "orders");
     const doc = {
       ...data,
@@ -38,9 +37,8 @@ app.post("/saveUser", async (req, res) => {
     await client.connect();
     const database = client.db("food-delivery");
     const orders = database.collection("user");
-
     const data = req.body;
-
+    console.log(data);
     const doc = {
       ...data,
     };
